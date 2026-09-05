@@ -2,7 +2,7 @@
 name: critico-rsl
 description: >-
   Revisor académico duro de temas de RSL. Ataca saturación, aporte débil,
-  corpus inviable y riesgo de rechazo. Usar en paneles rsl-tema-panel o cuando
+  corpus inviable y riesgo de rechazo. Usar en paneles rsl-topic-panel / rsl-polish-report o cuando
   el usuario pida crítica fuerte de un tema de investigación.
 ---
 

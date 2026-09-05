@@ -1,79 +1,56 @@
-# FIS — Temas de RSL (Ingeniería de Software)
+# FIS — Skills RSL
 
-Material para definir y validar un tema de **Revisión Sistemática de la Literatura**.
+Nomenclatura: `rsl-*` (inglés).
 
-## Contenido
+| Skill | Qué hace |
+|-------|----------|
+| `rsl-topic-panel` | Estresa un tema con 4 agentes. No escribe informe. |
+| `rsl-make-report` | Recibe un tema y crea `docs/[fecha hora - título]/informe.md`. |
+| `rsl-polish-report` | Pule un `informe.md` existente con 4 agentes. |
 
-| Archivo | Qué es |
-|---------|--------|
-| [candidatos-tema-rsl.md](candidatos-tema-rsl.md) | Ejemplos opcionales de temas (no son requisito) |
-| Este README | Cómo correr el panel con **cualquier** tema |
+Agentes: `.cursor/agents/`
 
-## Skill: `rsl-tema-panel`
-
-En este proyecto:
+Salida de informes:
 
 ```text
-.cursor/skills/rsl-tema-panel/SKILL.md
-.cursor/agents/critico-rsl.md
-.cursor/agents/defensor-rsl.md
-.cursor/agents/impacto-social-rsl.md
-.cursor/agents/viabilidad-negocio-rsl.md
+docs/[YYYY-MM-DD HHMM - titulo-breve]/informe.md
 ```
-
-**Importante:** la skill acepta **cualquier tema** que pases en el chat (título + problemática + objeto).  
-Los 5 candidatos del MD son solo ideas de ejemplo; **no** son la única entrada.
-
-El panel lanza 4 agentes en paralelo y devuelve **GO / GO_con_cambios / NO_GO**.
 
 ---
 
-## Cómo ejecutar (tema libre — forma principal)
+## Cómo ejecutar
 
-En el chat de Cursor (Agent mode), pega tu tema:
-
-```text
-Usa rsl-tema-panel con este tema:
-
-Título: Inteligencia artificial para ...
-Problemática: ¿Cómo se han aplicado ...?
-Objeto de estudio: Los modelos y técnicas ...
-Carrera: Ingeniería de Software
-```
-
-Variante corta:
+### Estresar tema (opcional)
 
 ```text
-rsl-tema-panel
+Usa rsl-topic-panel con este tema:
 
 Título: ...
 Problemática: ...
-Objeto: ...
+Objeto de estudio: ...
 ```
 
-Si mandas solo `rsl-tema-panel` sin datos, te pedirá título, problemática y objeto. No elige un candidato del MD por ti.
-
-### Atajo opcional (solo si quieres un ejemplo del MD)
+### Crear informe
 
 ```text
-Usa rsl-tema-panel sobre el Candidato 3 de candidatos-tema-rsl.md
+Usa rsl-make-report
+
+Título: ...
+Problemática: ...
+Objeto de estudio: ...
+Carrera: Ingeniería de Software
+```
+
+Si faltan RSL: keywords + queries Scopus en el informe; adjunta PDF en la misma carpeta `docs/.../`.
+
+### Pulir informe
+
+```text
+Usa rsl-polish-report sobre docs/YYYY-MM-DD HHMM - titulo-breve/informe.md
 ```
 
 ---
 
-## Qué hace al correr
+## Orden
 
-1. Normaliza el tema que **tú** pasaste.
-2. Lanza en paralelo: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`.
-3. Sintetiza veredicto y, si hace falta, una versión afilada del título.
-
-**Un tema por corrida.**
-
----
-
-## Flujo recomendado
-
-1. Define tu tema (propio o inspirado en [candidatos-tema-rsl.md](candidatos-tema-rsl.md)).
-2. Corre `rsl-tema-panel` pegando ese tema.
-3. Si sale `GO_con_cambios` o `NO_GO`, ajusta y vuelve a correr.
-4. Con un veredicto aceptable, usa esa versión para el revisor.
+`rsl-topic-panel` (opcional) → `rsl-make-report` → adjuntar PDFs → `rsl-polish-report`

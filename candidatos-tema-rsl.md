@@ -11,12 +11,12 @@ Método: cada tema une **3 tópicos** (dominio + tecnología SE/IA + ángulo dif
 
 ## Cómo estresar un tema (tú corres el panel)
 
-La skill `rsl-tema-panel` acepta **cualquier tema**, no solo estos 5.
+La skill `rsl-topic-panel` acepta **cualquier tema**, no solo estos 5.
 
 Forma principal — pega tu tema en el chat:
 
 ```text
-Usa rsl-tema-panel con este tema:
+Usa rsl-topic-panel con este tema:
 
 Título: ...
 Problemática: ...
@@ -26,7 +26,7 @@ Objeto de estudio: ...
 Atajo opcional si quieres uno de estos ejemplos:
 
 ```text
-Usa rsl-tema-panel sobre el Candidato N de candidatos-tema-rsl.md
+Usa rsl-topic-panel sobre el Candidato N de candidatos-tema-rsl.md
 ```
 
 Detalle: [README.md](README.md).
@@ -133,11 +133,11 @@ Taxonomía por tipo de discapacidad cognitiva, técnica de IA, fase SE y métric
 
 ## Uso del panel de estrés
 
-- Skill: `~/.cursor/skills/rsl-tema-panel/SKILL.md`
-- Agentes: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl` en `~/.cursor/agents/`
+- Skill: `.cursor/skills/rsl-topic-panel/SKILL.md`
+- Agentes: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl` en `.cursor/agents/`
 
-Tras **tu** ejecución del panel, anota aquí el veredicto:
+Tras **tu** ejecución del panel, anota el veredicto. Para el informe UTP usa `rsl-make-report` (salida en `docs/[fecha hora - título]/informe.md`).
 
-| Candidato | Veredicto | Fecha | Notas |
-|-----------|-----------|-------|-------|
+| Tema / corrida | Veredicto | Fecha | Notas |
+|----------------|-----------|-------|-------|
 | (elegido) | GO / GO_con_cambios / NO_GO | | |

@@ -2,7 +2,7 @@
 name: viabilidad-negocio-rsl
 description: >-
   Evalúa viabilidad empresarial/industrial de un tema de RSL: adopción,
-  transferencia, quién usaría los hallazgos. Usar en paneles rsl-tema-panel.
+  transferencia, quién usaría los hallazgos. Usar en paneles rsl-topic-panel / rsl-polish-report.
 ---
 
 Eres un analista de **viabilidad empresarial e industrial** de temas de RSL en tecnología/software.
