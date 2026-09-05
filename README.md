@@ -9,8 +9,8 @@ Nomenclatura skills: `rsl-*` / `graphify-*` (inglés).
 | `rsl-topic-panel` | Estresa un tema (4 agentes + debate Mermaid + consenso) | `docs/[titulo-breve]/topic.md` |
 | `rsl-make-report` | Genera el informe UTP (7 puntos) | `docs/[titulo-breve]/informe.md` |
 | `rsl-polish-report` | Pule el informe (4 agentes) | `docs/[titulo-breve]/informe-polish.md` |
-| `rsl-make-paper` | Genera la **Introducción** del paper (sin agentes) | `docs/[titulo-breve]/paper.md` |
-| `rsl-polish-paper` | Pule la Introducción (4 agentes) | `docs/[titulo-breve]/paper-polish.md` |
+| `rsl-make-paper` | Genera la **Introducción** borrador (sin agentes; APA 7; puede ir larga con §1.1…) | `docs/[titulo-breve]/paper.md` |
+| `rsl-polish-paper` | Pule la Introducción (4 agentes) → texto limpio + traza de debate | `paper-polish.md` + `paper-debate.md` |
 
 ## Skills Graphify (memoria — **tú** las ejecutas)
 
@@ -29,7 +29,8 @@ docs/[titulo-breve]/
   informe.md
   informe-polish.md
   paper.md
-  paper-polish.md
+  paper-polish.md        ← tema / problemática / objetivo + Intro fluida + 3 refs APA
+  paper-debate.md        ← Mermaid + turnos (no va al documento)
   ficha.md               ← opcional (si la adjuntas; si no, se usa informe-polish/informe)
   RSL/
     PDF/                 ← originales
@@ -80,7 +81,7 @@ Usa `topic.md` + ficha (`informe-polish.md` / `informe.md` / `ficha.md`) + Graph
 Usa rsl-make-paper sobre docs/ia-inclusion-cognitiva-software/
 ```
 
-Salida: `paper.md` (Contexto, Problema, Justificación, Objetivo, Organización).
+Salida: `paper.md` (borrador con Contexto…Organización numerados; **no** citar `topic.md` en el texto).
 
 ### Pulir Introducción del paper (4 agentes)
 
@@ -88,7 +89,9 @@ Salida: `paper.md` (Contexto, Problema, Justificación, Objetivo, Organización)
 Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
 ```
 
-Salida: `paper-polish.md`.
+Salidas:
+- `paper-polish.md` — solo **Tema / Problemática / Objetivo**, luego **Introducción** en párrafos (sin 1.1/2.3), al final **Referencias** APA 7 de las **3 RSL ancla**.
+- `paper-debate.md` — flujo Mermaid + preguntas/respuestas del debate (el paper queda limpio).
 
 ### Memoria Graphify — root
 
@@ -134,10 +137,9 @@ rsl-topic-panel
   → PDFs en RSL/PDF/
   → graphify-theme (PASS)
   → rsl-polish-report
-  → rsl-make-paper          ← Introducción (borrador)
-  → rsl-polish-paper        ← Introducción debatida
+  → rsl-make-paper          ← Introducción borrador (APA 7; puede ser larga)
+  → rsl-polish-paper        ← paper-polish.md limpio + paper-debate.md
 ```
-
 (y de vez en cuando **`graphify-root`** si cambias skills / `global/`)
 
 ## Requisitos Graphify

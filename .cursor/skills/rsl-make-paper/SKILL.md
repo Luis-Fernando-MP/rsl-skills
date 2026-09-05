@@ -56,7 +56,11 @@ Usa rsl-make-paper
 
 ## Writing style (required)
 
-Spanish **académico-profesional**; connectors; cohesive paragraphs; APA in-text where DOI exists. No colloquial tone. Tables only if they clarify frontiers (optional, short).
+Spanish **académico-profesional**; connectors; cohesive paragraphs; **APA 7** in-text where DOI exists (`Autor, año`). No colloquial tone. Tables only if they clarify frontiers (optional, short).
+
+**Citas — hard rules:** never put `` `topic.md` ``, `informe.md`, “panel”, “GO_con_cambios”, skill names, or repo paths in the visible paper text. Those files are **internal inputs** only. Align content with the final theme from `topic.md`, but phrase it as academic argument + published citations.
+
+`paper.md` **may be long and numbered** (1.1, 2.3…): it is the working draft. The clean deliverable (tema / problemática / objetivo + Introducción fluida + Referencias APA de las 3 RSL) is produced later by **`rsl-polish-paper`** → `paper-polish.md`.
 
 ## Procedure (required)
 
@@ -122,14 +126,18 @@ Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
 (Cómo se organiza el resto del documento / protocolo: secciones previstas de la RSL)
 ```
 
-Fill every section with real content from the package. Section 1–2 must cite the SLR frontiers from the ficha. Align title/problem/object with `topic.md` final theme when GO_con_cambios / GO.
+Fill every section with real content from the package. Section 1–2 must cite the SLR frontiers from the ficha (APA 7). Align title/problem/object with the final theme from `topic.md` (internal), without naming that file.
+
+Optional at end of `paper.md` (working notes only, clearly marked): a draft `## Referencias` with the 3 anchor SLRs in APA 7 — `rsl-polish-paper` will publish the clean list.
 
 ## Forbidden
 
 - Launching the 4 polish agents.
 - Overwriting `informe.md` / `informe-polish.md` / `topic.md`.
 - Inventing citations or DOI.
+- Citing `topic.md`, panel verdicts, or repo paths in the paper body.
 - Dumping full PDFs into chat when Graphify / `RSL/MD` exists.
 - Refreshing Graphify unless the user explicitly asks.
 - Saving outside `docs/[titulo-breve]/`.
 - Naming the output `informe.md` (output is **`paper.md`** only).
+- Expecting `paper.md` to be the final camera-ready intro (that is **`paper-polish.md`**).

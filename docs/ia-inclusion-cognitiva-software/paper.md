@@ -6,7 +6,7 @@
 
 La accesibilidad digital designa el conjunto de propiedades que permiten a las personas —incluidas aquellas con discapacidad— percibir, operar y comprender productos y servicios digitales. En el ámbito web, las *Web Content Accessibility Guidelines* (WCAG) constituyen el marco de referencia dominante para requisitos verificables de conformidad (W3C). En paralelo, el trabajo del W3C *Cognitive and Learning Disabilities Accessibility* (COGA) articula orientaciones orientadas a barreras de comprensión, memoria, atención y carga cognitiva, con frecuencia menos automatizables que los criterios WCAG centrados en percepción y operación.
 
-Por *accesibilidad cognitiva* se entiende aquí la capacidad del software de reducir barreras cognitivas (p. ej. lenguaje sencillo, consistencia, control del ritmo, minimización de sobrecarga). *Neurodivergencia* se usa como categoría amplia que agrupa perfiles como TEA, TDAH, dislexia o discapacidad intelectual, sin tratarla como caja negra: el protocolo de la revisión estratificará poblaciones cuando la evidencia lo permita (consenso del panel en `topic.md`).
+Por *accesibilidad cognitiva* se entiende aquí la capacidad del software de reducir barreras cognitivas (p. ej. lenguaje sencillo, consistencia, control del ritmo, minimización de sobrecarga). *Neurodivergencia* se usa como categoría amplia que agrupa perfiles como TEA, TDAH, dislexia o discapacidad intelectual, sin tratarla como caja negra: el protocolo de la revisión estratificará poblaciones cuando la evidencia lo permita.
 
 La *inteligencia artificial* (IA), incluidos el aprendizaje automático y los modelos de lenguaje grandes (LLM / GenAI), interviene cada vez más en la generación de contenido, la detección de problemas de accesibilidad y la remediación asistida. El *ciclo de vida del software* (requisitos, diseño, implementación, verificación y validación, operación) es el eje de la Ingeniería de Software: el interés de esta revisión no es la tecnología asistiva clínica en sí, sino cómo la IA se inserta en artefactos y procesos de ingeniería —en especial diseño, personalización en runtime y, sobre todo, testing, V&V y auditoría— y qué métricas se emplean para evaluar calidad y accesibilidad.
 
@@ -38,7 +38,7 @@ Existe discrepancia entre (a) el volumen de síntesis sobre IA+accesibilidad dig
 
 ### 2.3 Vacíos de conocimiento
 
-Persiste un vacío operativo: no se dispone de una taxonomía **condición × técnica de IA × fase SE × métrica** que contraste explícitamente el sesgo visual/WCAG-duro, delimite HCI/AT clínico y señale qué puede automatizarse (p. ej. en CI) frente a lo que exige validación con usuarios COGA. Tampoco está estabilizado, a escala de revisión, el inventario de métricas cognitivas usadas en V&V de software asistido por IA. El panel (`topic.md`, veredicto GO_con_cambios) ubicó la celda más aguda en verificación/evaluación × GenAI × COGA, sin impedir cubrir diseño y personalización cuando haya evidencia de proceso SE.
+Persiste un vacío operativo: no se dispone de una taxonomía **condición × técnica de IA × fase SE × métrica** que contraste explícitamente el sesgo visual/WCAG-duro, delimite HCI/AT clínico y señale qué puede automatizarse (p. ej. en CI) frente a lo que exige validación con usuarios COGA. Tampoco está estabilizado, a escala de revisión, el inventario de métricas cognitivas usadas en V&V de software asistido por IA. La celda más aguda se ubica en verificación/evaluación × GenAI × COGA, sin impedir cubrir diseño y personalización cuando haya evidencia de proceso SE.
 
 ### 2.4 Contraste: situación actual vs situación deseada
 
@@ -50,7 +50,7 @@ Persiste un vacío operativo: no se dispone de una taxonomía **condición × t�
 
 ### 3.1 Justificación de la elección del tema
 
-El tema se eligió porque articula tres tópicos defendibles ante un revisor de Ingeniería de Software: accesibilidad cognitiva/neurodivergencia (con COGA), IA/GenAI aplicada a artefactos del ciclo de vida, y fases SE con métricas de diseño, personalización y verificación. El consenso del panel descartó un título genérico de “software inclusivo” que colisionaba con síntesis HCI (Xu et al., 2025) y exigió el recorte a ciclo de vida y métricas. Además, Chemnad y Othman (2024) y Aljedaani y Mollik (2026) aportan evidencia de sesgo visual/WCAG que hace científicamente pertinente el contraste cognitivo, mientras Perry et al. (2024) evitan confundir el objeto con outcomes clínicos.
+El tema se eligió porque articula tres tópicos defendibles ante un revisor de Ingeniería de Software: accesibilidad cognitiva/neurodivergencia (con COGA), IA/GenAI aplicada a artefactos del ciclo de vida, y fases SE con métricas de diseño, personalización y verificación. Se descartó un título genérico de “software inclusivo” que colisionaba con síntesis HCI (Xu et al., 2025) y se exigió el recorte a ciclo de vida y métricas. Además, Chemnad y Othman (2024) y Aljedaani y Mollik (2026) aportan evidencia de sesgo visual/WCAG que hace científicamente pertinente el contraste cognitivo, mientras Perry et al. (2024) evitan confundir el objeto con outcomes clínicos.
 
 ### 3.2 Utilidad de los resultados de la revisión
 
