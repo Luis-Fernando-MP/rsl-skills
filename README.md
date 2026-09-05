@@ -4,7 +4,7 @@ Nomenclatura: `rsl-*` (inglés).
 
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
-| `rsl-topic-panel` | Estresa un tema (4 agentes) | `docs/[titulo-breve]/topic.md` |
+| `rsl-topic-panel` | Estresa un tema (4 agentes + debate Mermaid + consenso) | `docs/[titulo-breve]/topic.md` |
 | `rsl-make-report` | Genera el informe UTP | `docs/[titulo-breve]/informe.md` |
 | `rsl-polish-report` | Pule el informe (4 agentes) | `docs/[titulo-breve]/informe-pulido.md` |
 

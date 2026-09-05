@@ -1,16 +1,17 @@
 ---
 name: rsl-topic-panel
 description: >-
-  Stress-tests any RSL research topic with 4 agents and writes
-  docs/[short-title]/topic.md with GO / GO_with_changes / NO_GO. Use when the
-  user says rsl-topic-panel or pastes title/problem/object for stress-testing.
+  Scopus-grade stress test of any RSL topic: 4 hard agents (critic, defender,
+  social impact, business) with mandatory web evidence, cross-debate, and a
+  final consensus topic written to docs/[short-title]/topic.md. Use when the
+  user says rsl-topic-panel or pastes title/problem/object.
 ---
 
 # rsl-topic-panel
 
 ## Goal
 
-Receive **any** research topic, launch 4 agents in parallel, synthesize a hard verdict, and **save** it under `docs/`.
+Stress-test a research topic at **Scopus / journal review** intensity. Four agents argue hard in their domain, grounded on **internet sources** (WebSearch/WebFetch). The orchestrator writes a full `topic.md` ending in a **Tema final propuesto** that all roles converge on.
 
 ## Output path (required)
 
@@ -18,9 +19,7 @@ Receive **any** research topic, launch 4 agents in parallel, synthesize a hard v
 docs/[titulo-breve]/topic.md
 ```
 
-Example: `docs/ia-pipelines-amenazas/topic.md`
-
-Slug rules: 3–6 words from the topic, lowercase, hyphenated, no `/`. Same folder is reused later by `rsl-make-report` / `rsl-polish-report` for the same theme.
+Slug: 3–6 words, lowercase, hyphenated. Same folder reused by `rsl-make-report` / `rsl-polish-report`.
 
 ## Invoke
 
@@ -33,68 +32,178 @@ Objeto de estudio: ...
 Carrera: Ingeniería de Software
 ```
 
-If no topic → ask for title, problem, object. Do not invent a topic.
+No topic → ask. Do not invent a topic.
 
-## Normalize
+## Standard of rigor
 
-```markdown
-## BLOQUE_TEMA
-- Título:
-- Problemática:
-- Objeto de estudio:
-- Tópicos (3): (infer only if missing; mark as inferred)
-- Carrera/contexto: (default Ingeniería de Software)
-- Notas: (optional)
-```
+This is not a friendly brainstorm. Assume an external reviewer from a indexed venue (Scopus/WoS/IEEE). Soft praise without evidence is failure. Every agent must:
+
+1. Run **WebSearch** (and WebFetch if needed) on real SLR/SMS/markets/policies before concluding.
+2. Cite concrete sources (title/year/venue or URL/DOI) — never invent papers.
+3. Be **maximal** in their role (critic attacks; defender fights with evidence; social and business push hard on their axes).
 
 ## Procedure (required)
 
-1. Build `BLOQUE_TEMA` and choose `docs/[titulo-breve]/`.
-2. Launch in parallel:
-   - `subagent_type: critico-rsl`
-   - `subagent_type: defensor-rsl`
-   - `subagent_type: impacto-social-rsl`
-   - `subagent_type: viabilidad-negocio-rsl`
-3. Each Task gets the same `BLOQUE_TEMA` + “Evalúa solo este tema. Responde en español con el formato de tu rol.”
-4. Synthesize in Spanish with the output template.
-5. Write `docs/[titulo-breve]/topic.md` (create folder if needed).
-6. In chat: path to `topic.md` + brief verdict.
+### Round 1 — parallel agents (same BLOQUE_TEMA)
 
-**Forbidden:** MD-only candidates by default; skipping the file write; writing `informe.md` here (`rsl-make-report`).
+Launch in one response, in parallel:
+
+- `critico-rsl`
+- `defensor-rsl`
+- `impacto-social-rsl`
+- `viabilidad-negocio-rsl`
+
+Each prompt must include:
+
+```text
+Evalúa solo este tema. Responde en español con el formato de tu rol.
+OBLIGATORIO: usa WebSearch/WebFetch; cita fuentes reales (RSL/SMS, políticas, mercado).
+Estándar: revisión tipo Scopus. Sé máximo en tu rol.
+
+## BLOQUE_TEMA
+...
+```
+
+### Round 2 — cross-debate (orchestrator)
+
+After all four return, the orchestrator (you):
+
+1. Extract clashes (critic vs defender; social vs business trade-offs).
+2. Optionally launch **one short follow-up** to critic and defender with the other’s key points (“responde a estos ataques/contraataques con evidencia web si hace falta”).
+3. Build recommendations that agents would force on each other.
+4. Force a **single converged topic** (not four alternatives). Prefer the sharpest version that survives the critic while keeping social/business value and SE alignment.
+
+### Write `topic.md`
+
+Use the full template below. **Never skip** `## Tema final propuesto` or `## Diagrama del debate`.
+
+**Mermaid (required):** after the global verdict, include a **flowchart** of how the agents argued (ronda 1 → objeciones/preguntas → ronda 2 → consenso). Keep node IDs without spaces (camelCase). Edge labels = short objections or questions. Follow mermaid_syntax rules (no spaces in IDs; quote labels with special characters).
+
+In chat: path + one-line global verdict + pointer to Tema final.
 
 ## Output template (`topic.md`)
 
 ```markdown
 # Veredicto del panel — [título corto]
 
-## BLOQUE_TEMA
+## BLOQUE_TEMA (entrada)
 - Título:
 - Problemática:
 - Objeto de estudio:
 - Tópicos (3):
 - Carrera/contexto:
+- Notas:
 
 ## Veredicto global
 GO | GO_con_cambios | NO_GO
-Riesgo de rechazo: alto | medio | bajo
+Riesgo de rechazo (Scopus/revisor externo): alto | medio | bajo
+
+## Diagrama del debate
+*(Flujo breve: objeciones y preguntas cruzadas hasta el tema final.)*
+
+\`\`\`mermaid
+flowchart TD
+  tema[TemaEntrada] --> r1[Ronda1_Paralelo]
+  r1 --> crit[Critico]
+  r1 --> def[Defensor]
+  r1 --> soc[ImpactoSocial]
+  r1 --> neg[ViabilidadNegocio]
+  crit -->|"objecion_clave"| def
+  def -->|"contraataque"| crit
+  soc -->|"exigencia"| consenso
+  neg -->|"exigencia"| consenso
+  crit --> r2[Ronda2_Cruce]
+  def --> r2
+  r2 --> consenso[TemaFinalPropuesto]
+\`\`\`
+
+Customize nodes/edges to the **actual** objections and questions of this run (do not leave the generic example unchanged).
+
+## Fuentes consultadas (panel)
+- ...
 
 ## Ataques del crítico
+- ...
+### Fuentes del crítico
 - ...
 
 ## Defensa
 - ...
+### Fuentes del defensor
+- ...
 
 ## Impacto social
+- ...
+### Fuentes
 - ...
 
 ## Viabilidad empresarial
 - ...
+### Fuentes
+- ...
 
-## Versión afilada recomendada
-- Título:
-- Problemática:
-- Objeto:
+## Debate entre agentes
+### Choques principales
+- Crítico vs Defensor: ...
+- Impacto vs Negocio (si aplica): ...
+### Preguntas cruzadas
+1. El crítico pregunta al defensor: ...
+   - Respuesta / resolución: ...
+2. El defensor reta al crítico: ...
+   - Respuesta / resolución: ...
+3. Impacto social exige: ...
+4. Viabilidad empresarial exige: ...
+### Recomendaciones cruzadas
+- El crítico obliga a: ...
+- El defensor propone conservar: ...
+- Impacto social impone salvaguarda: ...
+- Negocio impone salida accionable: ...
 
 ## 5 mejoras mínimas antes de presentar
 1. ...
+
+## Tema final propuesto
+*(Consenso tras el debate. Un solo planteamiento. Listo para `rsl-make-report`.)*
+
+### Título final
+...
+
+### Problemática final
+...
+
+### Objeto de estudio / objetivo final
+...
+
+### Tópicos (3) finales
+1. ...
+2. ...
+3. ...
+
+### Por qué se eligió este recorte
+...
+
+### Aporte científico defendible (una frase)
+...
+
+### Alcance y exclusiones
+- Incluye: ...
+- Excluye: ...
+
+### Riesgos residuales y cómo mitigarlos
+- ...
+
+### Criterios de éxito ante un revisor Scopus
+- ...
+
+### Listo para siguiente skill
+`rsl-make-report` sobre `docs/[titulo-breve]/`
 ```
+
+## Forbidden
+
+- Soft consensus without critic pressure.
+- Agents concluding without web search.
+- Inventing DOI/papers.
+- Skipping `## Tema final propuesto` or `## Diagrama del debate`.
+- Leaving the Mermaid example generic instead of reflecting this run’s objections.
+- Writing `informe.md` here.

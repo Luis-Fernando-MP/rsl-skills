@@ -1,0 +1,111 @@
+# Informe RSL — IA en el ciclo de vida del software para accesibilidad cognitiva
+
+## 1. Título / tema de la RSL
+
+Inteligencia artificial en el ciclo de vida del software para accesibilidad cognitiva y neurodivergencia: técnicas, fases de ingeniería y métricas de evaluación — una revisión sistemática de la literatura
+
+*(Tema final consensuado en `topic.md` tras panel `rsl-topic-panel`.)*
+
+## 2. Problemática
+
+¿Cómo se han integrado técnicas de inteligencia artificial en las fases del ciclo de vida del software (con énfasis en diseño, personalización y, sobre todo, verificación/evaluación) orientadas a usuarios con discapacidad cognitiva o neurodivergencia, qué métricas de evaluación se emplean, y qué vacíos metodológicos persisten frente al sesgo de la literatura y la práctica hacia la accesibilidad sensorial/visual y frente a revisiones HCI/AT ya existentes?
+
+## 3. Objeto de estudio
+
+Síntesis de evidencia primaria sobre técnicas de IA aplicadas a artefactos y procesos de Ingeniería de Software (requisitos/diseño de interfaces adaptativas, personalización en runtime, testing/V&V/auditoría de accesibilidad) para perfiles cognitivos o neurodivergentes, con el fin de producir una taxonomía **condición × técnica de IA × fase SE × métrica de evaluación**, contrastada explícitamente con el sesgo visual/WCAG-duro y delimitada frente a intervenciones HCI/AT clínicas o educativas sin componente de proceso SE.
+
+## Keywords
+
+| Español | Inglés |
+|---------|--------|
+| revisión sistemática de la literatura | systematic literature review |
+| revisión de alcance | scoping review |
+| inteligencia artificial | artificial intelligence |
+| modelos de lenguaje grandes | large language models |
+| GenAI | generative AI |
+| accesibilidad cognitiva | cognitive accessibility |
+| neurodivergencia | neurodiversity / neurodivergence |
+| trastorno del espectro autista | autism spectrum disorder |
+| TDAH | ADHD |
+| discapacidad intelectual | intellectual disability |
+| diseño de software | software design |
+| ciclo de vida del software | software development life cycle |
+| verificación y validación | verification and validation |
+| pruebas de software | software testing |
+| usabilidad | usability |
+| accesibilidad web | web accessibility |
+| WCAG | Web Content Accessibility Guidelines |
+| COGA | cognitive accessibility guidelines |
+| personalización de interfaces | adaptive user interfaces |
+| ingeniería de software | software engineering |
+
+**Query Scopus (sugerida):**
+
+```
+TITLE-ABS-KEY (
+  ( "systematic literature review" OR "scoping review" OR "systematic mapping" )
+  OR
+  (
+    ( "artificial intelligence" OR "machine learning" OR "deep learning" OR "large language model*" OR GenAI OR LLM )
+    AND
+    ( "cognitive accessibility" OR neurodivers* OR "intellectual disability" OR autism OR ADHD OR COGA )
+    AND
+    ( "software engineering" OR "software development" OR "software testing" OR "verification and validation" OR "user interface" OR WCAG )
+  )
+)
+AND PUBYEAR > 2019
+```
+
+Query enfocada a **estudios primarios** (para la RSL propiamente dicha, no solo revisiones previas):
+
+```
+TITLE-ABS-KEY (
+  ( "artificial intelligence" OR "machine learning" OR LLM OR "large language model*" OR "generative AI" )
+  AND
+  ( "cognitive accessibility" OR neurodivers* OR "learning disabilit*" OR autism OR "ADHD" OR COGA )
+  AND
+  ( "software testing" OR "accessibility evaluation" OR "accessibility audit" OR "software development" OR "requirements engineering" OR "user interface" OR WCAG )
+)
+AND PUBYEAR > 2019
+AND ( LIMIT-TO ( DOCTYPE , "ar" ) OR LIMIT-TO ( DOCTYPE , "cp" ) )
+```
+
+## Artículos de revisión de literatura relacionados (meta: 3)
+
+| Referencia bibliográfica (APA) | DOI / URL | Razón |
+|--------------------------------|-----------|-------|
+| Chemnad, K., & Othman, A. (2024). Digital accessibility in the era of artificial intelligence—Bibliometric analysis and systematic review. *Frontiers in Artificial Intelligence, 7*, 1349668. | https://doi.org/10.3389/frai.2024.1349668 | RSL OA que documenta el **predominio de la discapacidad visual** en IA+accesibilidad digital y el vacío en TEA/cognitivo/motor; sirve de frontera y de justificación del contraste “vs sesgo visual”. PDF: `chemnad-othman-2024-digital-accessibility-ai.pdf` |
+| Perry, N., et al. (2024). AI technology to support adaptive functioning in neurodevelopmental conditions in everyday environments: A systematic review. *npj Digital Medicine, 7*. | https://doi.org/10.1038/s41746-024-01355-7 | RSL clínica/asistiva sobre IA y condiciones del neurodesarrollo (robots, VR, phone/PC); delimita lo que **no** es el aporte SE (outcomes clínicos vs fases/métricas de ingeniería). PDF: `perry-etal-2024-ai-neurodevelopmental.pdf` |
+| Xu, Z., Liu, F., Xia, G., Duan, Y., & Yu, L. (2025). A scoping review of inclusive and adaptive human–AI interaction design for neurodivergent users. *Disability and Rehabilitation: Assistive Technology*. | https://doi.org/10.1080/17483107.2025.2579822 | Scoping de 117 papers (2019–2025) sobre diseño HAI inclusivo/adaptativo; es la revisión más cercana al tema de entrada y motiva el **recorte hacia ciclo de vida SE** acordado en el panel. **Adjuntar PDF** tras acceso institucional/Scopus. |
+
+**Queries Scopus para completar / localizar las RSL anteriores y afines:**
+
+```
+TITLE-ABS-KEY ( "digital accessibility" AND "artificial intelligence" AND "systematic review" ) AND PUBYEAR > 2022
+
+TITLE-ABS-KEY ( neurodiverg* AND ( "artificial intelligence" OR "human-AI" ) AND ( "scoping review" OR "systematic review" ) ) AND PUBYEAR > 2022
+
+TITLE-ABS-KEY ( "software engineering" AND accessibility AND ( "systematic literature review" OR "systematic mapping" ) ) AND PUBYEAR > 2019
+```
+
+## 4. Estado del conocimiento y necesidad de una nueva RSL
+
+La literatura reciente ya consolidó dos frentes que no deben confundirse con el aporte propuesto. Por un lado, Chemnad y Othman (2024) sintetizan aplicaciones de IA a la accesibilidad digital y evidencian un sesgo estructural hacia la discapacidad visual, junto con escasa cobertura de TEA, trastornos neurológicos y otras condiciones, además de débil adhesión a estándares. Por otro, Perry et al. (2024) revisan tecnologías de IA para el funcionamiento adaptativo en condiciones del neurodesarrollo en entornos cotidianos, con énfasis en outcomes clínicos y de apoyo, no en artefactos del ciclo de vida del software. En paralelo, Xu et al. (2025) mapean el diseño de interacción humano–IA inclusivo y adaptativo para usuarios neurodivergentes (117 estudios), pero desde una lente HCI/tecnología asistiva —características técnicas, estrategias de diseño, engagement, efectividad y ética—, sin construir una taxonomía condición × técnica × **fase de ingeniería de software** × **métrica de evaluación de calidad/accesibilidad en el proceso**.
+
+En consecuencia, persiste la necesidad de una RSL anclada en Ingeniería de Software que, partiendo de esas fronteras, organice cómo la IA interviene en diseño, personalización y, especialmente, verificación/evaluación para accesibilidad cognitiva y neurodivergencia, explicitando métricas (incluidas las orientaciones COGA frente al núcleo WCAG) y vacíos metodológicos. Dicha síntesis permitiría, además, delimitar con rigor lo que ya cubren las revisiones HCI/AT y evitar un remake del tema de entrada, alineando el aporte con el consenso del panel (`topic.md`).
+
+*(≈ 280 palabras)*
+
+## 5. Línea(s) de investigación UTP
+
+La investigación propuesta responde, en primer lugar, a la línea **«Computación Científica»**, transversal a los programas de Ingeniería de la Facultad de Ingeniería de la UTP, cuyo objetivo es elaborar y desarrollar soluciones computacionales vinculadas a modelos y técnicas para analizar procesos de ingeniería. En ese sentido, al centrarse en modelos y técnicas de inteligencia artificial —y en su evaluación mediante métricas— aplicados al ciclo de vida del software inclusivo cognitivo, el estudio se alinea de modo directo con dicha línea.
+
+De forma complementaria, se vincula con la línea **«Aplicaciones TIC, electrónicas, robóticas y de telecomunicaciones para la competitividad, salud, educación y seguridad ciudadana»**, orientada a desarrollar aplicaciones informáticas que mejoren la competitividad y el bienestar en ámbitos como educación y servicios ciudadanos. La accesibilidad cognitiva de plataformas digitales —relevante para educación inclusiva y gobierno digital accesible en el Perú— sitúa la síntesis propuesta como insumo técnico para ese propósito, sin desplazar el núcleo metodológico de la Computación Científica y de la Ingeniería de Software.
+
+## 6. Competencias de la carrera
+
+El tema se relaciona, en primer término, con la competencia de **desarrollo de software**, en tanto exige dominio del ciclo de vida y de los entregables por fase (requisitos, diseño, verificación y evaluación), precisamente el eje analítico de la RSL. Asimismo, conecta con **tecnologías de vanguardia** y el área de **desarrollo con IA**, al examinar cómo la inteligencia artificial —incluido el GenAI— se incorpora a prácticas y herramientas de ingeniería. De igual modo, dialoga con el **desarrollo frontend** y el análisis de sistemas, dado el peso de interfaces adaptativas, usabilidad y modelado de requisitos de accesibilidad cognitiva. Finalmente, la lectura de métricas y evidencia cuantitativa/cualitativa de evaluación refuerza habilidades afines al análisis de datos para la toma de decisiones de calidad del producto, sin reducir el trabajo a Business Intelligence operativo.
+
+## 7. Título tentativo de la RSL
+
+Inteligencia artificial en el ciclo de vida del software para accesibilidad cognitiva y neurodivergencia: técnicas, fases de ingeniería y métricas de evaluación — una revisión sistemática de la literatura
