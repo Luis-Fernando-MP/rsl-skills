@@ -5,10 +5,19 @@ Nomenclatura: `rsl-*` (inglés).
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
 | `rsl-topic-panel` | Estresa un tema (4 agentes + debate Mermaid + consenso) | `docs/[titulo-breve]/topic.md` |
-| `rsl-make-report` | Genera el informe UTP | `docs/[titulo-breve]/informe.md` |
+| `rsl-make-report` | Genera el informe UTP (7 puntos) | `docs/[titulo-breve]/informe.md` |
 | `rsl-polish-report` | Pule el informe (4 agentes) | `docs/[titulo-breve]/informe-pulido.md` |
 
-Mismo tema → **misma carpeta** (`topic.md`, `informe.md`, `informe-pulido.md`, PDFs).
+Mismo tema → **misma carpeta**:
+
+```text
+docs/[titulo-breve]/
+  topic.md
+  informe.md
+  informe-pulido.md
+  RSL/
+    PDF/          ← PDFs de las RSL (no junto a los .md)
+```
 
 Agentes: `.cursor/agents/`
 
@@ -49,4 +58,4 @@ Usa rsl-polish-report sobre docs/[titulo-breve]/informe.md
 
 ## Orden
 
-`rsl-topic-panel` → `rsl-make-report` → adjuntar PDFs → `rsl-polish-report`
+`rsl-topic-panel` → `rsl-make-report` → PDFs en `RSL/PDF/` → `rsl-polish-report`

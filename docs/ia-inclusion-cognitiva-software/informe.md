@@ -1,20 +1,22 @@
 # Informe RSL — IA en el ciclo de vida del software para accesibilidad cognitiva
 
-## 1. Título / tema de la RSL
+## 1. Tema de la investigación elegido para la RSL
 
-Inteligencia artificial en el ciclo de vida del software para accesibilidad cognitiva y neurodivergencia: técnicas, fases de ingeniería y métricas de evaluación — una revisión sistemática de la literatura
+### 1.1 Tema
 
-*(Tema final consensuado en `topic.md` tras panel `rsl-topic-panel`.)*
+Inteligencia artificial en el ciclo de vida del software para accesibilidad cognitiva y neurodivergencia: técnicas, fases de ingeniería y métricas de evaluación — una revisión sistemática de la literatura.
 
-## 2. Problemática
+*(Tema final consensuado en `topic.md` tras panel `rsl-topic-panel`, veredicto GO_con_cambios.)*
+
+### 1.2 Problemática
 
 ¿Cómo se han integrado técnicas de inteligencia artificial en las fases del ciclo de vida del software (con énfasis en diseño, personalización y, sobre todo, verificación/evaluación) orientadas a usuarios con discapacidad cognitiva o neurodivergencia, qué métricas de evaluación se emplean, y qué vacíos metodológicos persisten frente al sesgo de la literatura y la práctica hacia la accesibilidad sensorial/visual y frente a revisiones HCI/AT ya existentes?
 
-## 3. Objeto de estudio
+### 1.3 Objeto de estudio
 
 Síntesis de evidencia primaria sobre técnicas de IA aplicadas a artefactos y procesos de Ingeniería de Software (requisitos/diseño de interfaces adaptativas, personalización en runtime, testing/V&V/auditoría de accesibilidad) para perfiles cognitivos o neurodivergentes, con el fin de producir una taxonomía **condición × técnica de IA × fase SE × métrica de evaluación**, contrastada explícitamente con el sesgo visual/WCAG-duro y delimitada frente a intervenciones HCI/AT clínicas o educativas sin componente de proceso SE.
 
-## Keywords
+## 2. Palabras clave
 
 | Español | Inglés |
 |---------|--------|
@@ -70,13 +72,15 @@ AND PUBYEAR > 2019
 AND ( LIMIT-TO ( DOCTYPE , "ar" ) OR LIMIT-TO ( DOCTYPE , "cp" ) )
 ```
 
-## Artículos de revisión de literatura relacionados (meta: 3)
+## 3. Artículos de revisión de literatura relacionados con el tema de investigación
 
-| Referencia bibliográfica (APA) | DOI / URL | Razón |
-|--------------------------------|-----------|-------|
-| Chemnad, K., & Othman, A. (2024). Digital accessibility in the era of artificial intelligence—Bibliometric analysis and systematic review. *Frontiers in Artificial Intelligence, 7*, 1349668. | https://doi.org/10.3389/frai.2024.1349668 | RSL OA que documenta el **predominio de la discapacidad visual** en IA+accesibilidad digital y el vacío en TEA/cognitivo/motor; sirve de frontera y de justificación del contraste “vs sesgo visual”. PDF: `chemnad-othman-2024-digital-accessibility-ai.pdf` |
-| Perry, N., et al. (2024). AI technology to support adaptive functioning in neurodevelopmental conditions in everyday environments: A systematic review. *npj Digital Medicine, 7*. | https://doi.org/10.1038/s41746-024-01355-7 | RSL clínica/asistiva sobre IA y condiciones del neurodesarrollo (robots, VR, phone/PC); delimita lo que **no** es el aporte SE (outcomes clínicos vs fases/métricas de ingeniería). PDF: `perry-etal-2024-ai-neurodevelopmental.pdf` |
-| Xu, Z., Liu, F., Xia, G., Duan, Y., & Yu, L. (2025). A scoping review of inclusive and adaptive human–AI interaction design for neurodivergent users. *Disability and Rehabilitation: Assistive Technology*. | https://doi.org/10.1080/17483107.2025.2579822 | Scoping de 117 papers (2019–2025) sobre diseño HAI inclusivo/adaptativo; es la revisión más cercana al tema de entrada y motiva el **recorte hacia ciclo de vida SE** acordado en el panel. **Adjuntar PDF** tras acceso institucional/Scopus. |
+*(Mínimo 2 artículos de revisión; meta: 3 RSL. De no existir revisiones, mínimo 5 artículos originales con antigüedad menor a 5 años.)*
+
+| Referencia bibliográfica (APA) | DOI / URL | Razón | PDF |
+|--------------------------------|-----------|-------|-----|
+| Chemnad, K., & Othman, A. (2024). Digital accessibility in the era of artificial intelligence—Bibliometric analysis and systematic review. *Frontiers in Artificial Intelligence, 7*, 1349668. | https://doi.org/10.3389/frai.2024.1349668 | RSL OA que documenta el **predominio de la discapacidad visual** en IA+accesibilidad digital y el vacío en TEA/cognitivo/motor; justifica el contraste “vs sesgo visual”. | `RSL/PDF/chemnad-othman-2024-digital-accessibility-ai.pdf` |
+| Perry, N., et al. (2024). AI technology to support adaptive functioning in neurodevelopmental conditions in everyday environments: A systematic review. *npj Digital Medicine, 7*. | https://doi.org/10.1038/s41746-024-01355-7 | RSL clínica/asistiva sobre IA y condiciones del neurodesarrollo; delimita lo que **no** es el aporte SE (outcomes clínicos vs fases/métricas de ingeniería). | `RSL/PDF/perry-etal-2024-ai-neurodevelopmental.pdf` |
+| Xu, Z., Liu, F., Xia, G., Duan, Y., & Yu, L. (2025). A scoping review of inclusive and adaptive human–AI interaction design for neurodivergent users. *Disability and Rehabilitation: Assistive Technology*. | https://doi.org/10.1080/17483107.2025.2579822 | Scoping de 117 papers (2019–2025) sobre diseño HAI inclusivo/adaptativo; motiva el **recorte hacia ciclo de vida SE** acordado en el panel. | Pendiente (paywall) |
 
 **Queries Scopus para completar / localizar las RSL anteriores y afines:**
 
@@ -96,7 +100,7 @@ En consecuencia, persiste la necesidad de una RSL anclada en Ingeniería de Soft
 
 *(≈ 280 palabras)*
 
-## 5. Línea(s) de investigación UTP
+## 5. Línea(s) de investigación de la UTP
 
 La investigación propuesta responde, en primer lugar, a la línea **«Computación Científica»**, transversal a los programas de Ingeniería de la Facultad de Ingeniería de la UTP, cuyo objetivo es elaborar y desarrollar soluciones computacionales vinculadas a modelos y técnicas para analizar procesos de ingeniería. En ese sentido, al centrarse en modelos y técnicas de inteligencia artificial —y en su evaluación mediante métricas— aplicados al ciclo de vida del software inclusivo cognitivo, el estudio se alinea de modo directo con dicha línea.
 

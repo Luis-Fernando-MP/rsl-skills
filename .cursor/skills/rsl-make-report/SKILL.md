@@ -3,7 +3,7 @@ name: rsl-make-report
 description: >-
   Builds a UTP RSL report at docs/[short-title]/informe.md from a free topic
   (reuse the same folder as topic.md if the theme matches). Keywords, up to 3
-  SLRs or Scopus queries, sections 4–7, UTP lines and competencies. Use when
+  SLRs or Scopus queries, UTP sections 1–7, PDFs under RSL/PDF/. Use when
   the user says rsl-make-report. Does not run the 4-agent polish debate.
 ---
 
@@ -16,19 +16,23 @@ Receive a research topic and write a polished UTP `informe.md` in the theme fold
 ## Output path (required)
 
 ```text
-docs/[titulo-breve]/informe.md
+docs/[titulo-breve]/
+  topic.md              (optional, from rsl-topic-panel)
+  informe.md            (this skill)
+  RSL/
+    PDF/                (SLR PDFs only — never next to .md)
 ```
 
-Same theme as an existing panel → **reuse** that folder (where `topic.md` already lives):
+Same theme as an existing panel → **reuse** that folder (where `topic.md` already lives).
 
-```text
-docs/ia-pipelines-amenazas/
-  topic.md          (from rsl-topic-panel)
-  informe.md        (this skill)
-  *.pdf             (SLRs)
-```
+Slug: 3–6 words, lowercase, hyphenated. If the user points to an existing `docs/.../topic.md`, use that folder.
 
-Slug: 3–6 words, lowercase, hyphenated. If the user points to an existing `docs/.../topic.md`, use that folder. Put SLR PDFs in the **same** folder.
+### PDFs (required)
+
+- Store every downloaded SLR PDF under `docs/[titulo-breve]/RSL/PDF/`.
+- Create the folder if missing. Do **not** leave PDFs in the theme root (keeps token-heavy binaries out of the markdown workspace; the user may later convert PDF → MD with another tool under `RSL/`).
+- In `informe.md`, reference PDFs as `RSL/PDF/<filename>.pdf`.
+- Never invent DOI/PDF. If a PDF cannot be downloaded (paywall), note it as missing and keep the DOI + Scopus query.
 
 ## Invoke
 
@@ -57,29 +61,38 @@ Spanish **académico-profesional** with connectors; cohesive paragraphs; no coll
 
 ## Procedure (required)
 
-1. Resolve folder `docs/[titulo-breve]/` (same theme as `topic.md` if it exists).
-2. Normalize title / problemática / objeto (may use afilado from `topic.md` if user agrees or verdict was GO_con_cambios).
+1. Resolve folder `docs/[titulo-breve]/` (same theme as `topic.md` if it exists). Ensure `RSL/PDF/` exists.
+2. Normalize título / problemática / objeto (may use afilado from `topic.md` if user agrees or verdict was GO_con_cambios).
 3. **Keywords** ES|EN + Scopus query (**always**).
-4. **Up to 3 SLRs**; if fewer, add Scopus queries / placeholders. Never invent DOI/PDF.
-5. Sections 4–7 (section 4 ≤ 300 words).
-6. Write `informe.md` in that folder.
-7. Chat: path, SLRs found, queries pending, PDFs present/missing.
+4. **Up to 3 SLRs** (mínimo 2 revisiones; si no hay, mínimo 5 originales con antigüedad menor a 5 años). Download PDFs into `RSL/PDF/`. If fewer, add Scopus queries / placeholders. Never invent DOI/PDF.
+5. Sections 4–7 (section 4 ≤ 300 words; **citar las RSL de la sección 3**).
+6. Write `informe.md` with the **exact 7-point structure** below.
+7. Chat: path, SLRs found, queries pending, PDFs present/missing under `RSL/PDF/`.
+8. Chat — **siguiente paso** (no ejecutar polish aquí). Cerrar siempre con el comando:
+
+```text
+Usa rsl-polish-report sobre docs/[titulo-breve]/informe.md
+```
 
 ## File template (`informe.md`)
 
+Exactly these 7 UTP points (do not invent a separate “paso 8” inside the file):
+
 ```markdown
-# Informe RSL — [Título]
+# Informe RSL — [Título corto]
 
-## 1. Título / tema de la RSL
+## 1. Tema de la investigación elegido para la RSL
+
+### 1.1 Tema
 ...
 
-## 2. Problemática
+### 1.2 Problemática
 ...
 
-## 3. Objeto de estudio
+### 1.3 Objeto de estudio
 ...
 
-## Keywords
+## 2. Palabras clave
 
 | Español | Inglés |
 |---------|--------|
@@ -90,11 +103,13 @@ Spanish **académico-profesional** with connectors; cohesive paragraphs; no coll
 ...
 \`\`\`
 
-## Artículos de revisión de literatura relacionados (meta: 3)
+## 3. Artículos de revisión de literatura relacionados con el tema de investigación
 
-| Referencia bibliográfica (APA) | DOI / URL | Razón |
-|--------------------------------|-----------|-------|
-| ... o Pendiente | query / DOI | ... |
+*(Mínimo 2 artículos de revisión o, de no existir éstos, mínimo 5 artículos científicos originales con antigüedad menor a 5 años. Meta recomendada: 3 RSL.)*
+
+| Referencia bibliográfica (APA) | DOI / URL | Razón | PDF |
+|--------------------------------|-----------|-------|-----|
+| ... o Pendiente | DOI | ... | `RSL/PDF/...` o Pendiente |
 
 **Queries Scopus para completar RSL faltantes:**
 \`\`\`
@@ -102,21 +117,28 @@ Spanish **académico-profesional** with connectors; cohesive paragraphs; no coll
 \`\`\`
 
 ## 4. Estado del conocimiento y necesidad de una nueva RSL
-(≤ 300 palabras; prosa profesional)
 
-## 5. Línea(s) de investigación UTP
-...
+(≤ 300 palabras; prosa profesional; **citar aquí las revisiones de la sección 3**)
+
+## 5. Línea(s) de investigación de la UTP
+
+(Señale la(s) línea(s) a la que responde la investigación propuesta, **con justificación**: cómo el tema se asemeja y justifica con las líneas UTP.)
 
 ## 6. Competencias de la carrera
-...
+
+(Señale las competencias relacionadas con el tema, **con justificación**.)
 
 ## 7. Título tentativo de la RSL
+
+(Será ajustado a medida que se desarrolle la investigación.)
 ...
 ```
 
 ## Forbidden
 
 - Datetime folders; root `ficha_NNN.md`.
-- Launching polish agents.
+- Launching polish agents (only suggest the invoke command in chat).
+- Leaving SLR PDFs outside `RSL/PDF/`.
 - Omitting keywords/query when SLRs are missing.
 - Colloquial prose in narrative sections.
+- Collapsing 1.1 / 1.2 / 1.3 into three top-level sections numbered 1–3.

@@ -19,8 +19,11 @@ docs/[titulo-breve]/
   topic.md              (optional, from rsl-topic-panel)
   informe.md            (input, from rsl-make-report)
   informe-pulido.md     (output, this skill)
-  *.pdf
+  RSL/
+    PDF/                (SLR PDFs — do not move; read if useful)
 ```
+
+Preserve the UTP **7-point** structure from `rsl-make-report` (1.1–1.3 under point 1; points 2–7). Do not flatten or renumber.
 
 ## Invoke
 
@@ -40,16 +43,17 @@ Spanish académico-profesional with connectors; cohesive paragraphs.
 
 ## Procedure (required)
 
-1. Read `informe.md` (+ PDFs / `topic.md` in the same folder if useful).
+1. Read `informe.md` (+ `topic.md`; PDFs only under `RSL/PDF/` if useful — prefer not to load full PDFs into context).
 2. Launch in parallel: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`.
 3. Shared prompt: informe package + “Evalúa/mejora este INFORME. Responde en español con el formato de tu rol.”
 4. Brief debate synthesis in chat.
-5. Write **`informe-pulido.md`** (do not overwrite `informe.md` unless the user explicitly asks).
-6. List main changes and still-missing PDFs.
+5. Write **`informe-pulido.md`** (do not overwrite `informe.md` unless the user explicitly asks). Keep the same 7-point headings.
+6. List main changes and still-missing PDFs under `RSL/PDF/`.
 
 ## Forbidden
 
 - Creating informe from scratch (`rsl-make-report`).
 - Topic-only panel without informe (`rsl-topic-panel`).
-- Dropping UTP section structure.
+- Dropping UTP section structure (incl. 1.1 / 1.2 / 1.3).
+- Moving or dumping PDFs into the theme root.
 - Saving outside `docs/[titulo-breve]/`.
