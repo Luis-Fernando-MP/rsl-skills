@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-05T03:08:42+00:00",
+  "entries": {
+    "informe.md": {
+      "source": "informe.md",
+      "source_sha256": "7aa9e2ab6eb2e56cb36e1295a292bdf2544d452f4e2ceb7a6e4b5a96e7327e97",
+      "source_bytes": 10111,
+      "md": "informe.md",
+      "md_sha256": "7aa9e2ab6eb2e56cb36e1295a292bdf2544d452f4e2ceb7a6e4b5a96e7327e97",
+      "method": "theme-md",
+      "status": "graphify_indexed",
+      "md_created_at": "2026-09-05T03:08:41+00:00",
+      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "notes": "theme markdown",
+      "heading_count": 11
+    },
+    "topic.md": {
+      "source": "topic.md",
+      "source_sha256": "b2bcfb779775807cd94139e30179c2093e8f66ab1d87b117bed89c8a7b15669e",
+      "source_bytes": 11468,
+      "md": "topic.md",
+      "md_sha256": "b2bcfb779775807cd94139e30179c2093e8f66ab1d87b117bed89c8a7b15669e",
+      "method": "theme-md",
+      "status": "graphify_indexed",
+      "md_created_at": "2026-09-05T03:08:41+00:00",
+      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "notes": "theme markdown",
+      "heading_count": 29
+    },
+    "RSL/PDF/chemnad-othman-2024-digital-accessibility-ai.pdf": {
+      "source": "RSL/PDF/chemnad-othman-2024-digital-accessibility-ai.pdf",
+      "source_sha256": "4c2957e367f99b645b110c86ed7569fe836e3d61c01701c7e1c48508f5ab1e9a",
+      "source_bytes": 1031498,
+      "md": "RSL/MD/chemnad-othman-2024-digital-accessibility-ai.md",
+      "md_sha256": "6e90a0efdbb3a70ff8eba0c1d3cd79fc5c94c5f0224dee7505c7f7cc4daa7218",
+      "method": "pdftotext+structure",
+      "status": "graphify_indexed",
+      "md_created_at": "2026-09-05T03:08:41+00:00",
+      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "notes": "words:13220,alpha:0.93;headings:52",
+      "heading_count": 52
+    },
+    "RSL/PDF/perry-etal-2024-ai-neurodevelopmental.pdf": {
+      "source": "RSL/PDF/perry-etal-2024-ai-neurodevelopmental.pdf",
+      "source_sha256": "c3eb75ca1eed7f34927544a91b54981412149c1e41d8641e3d839d55888a0782",
+      "source_bytes": 1465957,
+      "md": "RSL/MD/perry-etal-2024-ai-neurodevelopmental.md",
+      "md_sha256": "9d05d9d6f10502dee60a89b1d316e0371bc034cd44f3a8da56539cb3df9cd228",
+      "method": "pdftotext+structure",
+      "status": "graphify_indexed",
+      "md_created_at": "2026-09-05T03:08:41+00:00",
+      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "notes": "words:11983,alpha:0.93;headings:37",
+      "heading_count": 37
+    }
+  }
+}

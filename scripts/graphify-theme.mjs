@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 /**
- * Refresh Graphify for one theme under docs/[titulo-breve]/.
- * Usage:
- *   npm run graphify:theme -- ia-inclusion-cognitiva-software
- *   npm run graphify:theme -- docs/ia-inclusion-cognitiva-software
+ * Theme Graphify orchestrator
+ *
+ * Stages:
+ *   A prepare  → npm run graphify:theme -- <slug> --prepare-only
+ *   C build+D  → npm run graphify:theme -- <slug>
+ *   D verify   → npm run graphify:theme -- <slug> --verify-only
+ *
+ * Full:
+ *   npm run graphify:theme -- <slug>
+ *   npm run graphify:theme -- <slug> --force
  */
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,25 +20,27 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 process.chdir(root);
 
-const raw = process.argv[2];
+const args = process.argv.slice(2);
+const flags = new Set(args.filter((a) => a.startsWith('--')));
+const positional = args.filter((a) => !a.startsWith('--'));
+const raw = positional[0];
+
 if (!raw) {
   console.error(
     [
-      'Missing theme. Usage:',
+      'Usage:',
       '  npm run graphify:theme -- <titulo-breve>',
-      '  npm run graphify:theme -- docs/<titulo-breve>',
-      '',
-      'Example:',
-      '  npm run graphify:theme -- ia-inclusion-cognitiva-software',
+      '  npm run graphify:theme -- <titulo-breve> --prepare-only',
+      '  npm run graphify:theme -- <titulo-breve> --build-only',
+      '  npm run graphify:theme -- <titulo-breve> --verify-only',
+      '  npm run graphify:theme -- <titulo-breve> --force',
     ].join('\n')
   );
   process.exit(1);
 }
 
 let themeRel = raw.replace(/\/+$/, '');
-if (!themeRel.startsWith('docs/')) {
-  themeRel = path.join('docs', themeRel);
-}
+if (!themeRel.startsWith('docs/')) themeRel = path.join('docs', themeRel);
 const themeAbs = path.resolve(root, themeRel);
 
 if (!existsSync(themeAbs)) {
@@ -40,51 +48,48 @@ if (!existsSync(themeAbs)) {
   process.exit(1);
 }
 
-// Ensure PDF (and optional MD) corpus dirs exist for the theme.
 mkdirSync(path.join(themeAbs, 'RSL', 'PDF'), { recursive: true });
+mkdirSync(path.join(themeAbs, 'RSL', 'MD'), { recursive: true });
+
+const themeIgnore = path.join(themeAbs, '.graphifyignore');
+if (!existsSync(themeIgnore)) {
+  writeFileSync(
+    themeIgnore,
+    ['# Re-include this theme (root ignores docs/**).', '!**', '!*', ''].join('\n'),
+    'utf8'
+  );
+}
 
 const home = process.env.USERPROFILE || process.env.HOME || homedir();
-const extraBins = [
-  path.join(home, '.local', 'bin'),
-  path.join(home, 'AppData', 'Roaming', 'Python', 'Python314', 'Scripts'),
-  path.join(home, 'AppData', 'Roaming', 'Python', 'Python313', 'Scripts'),
-  path.join(home, 'AppData', 'Roaming', 'Python', 'Python312', 'Scripts'),
-].filter((p) => existsSync(p));
+const graphifyPy = path.join(home, '.local', 'share', 'pipx', 'venvs', 'graphifyy', 'bin', 'python');
+const py = existsSync(graphifyPy) ? graphifyPy : 'python3';
+const offline = path.join(root, 'scripts', 'graphify-theme-offline.py');
+const pathEnv = [path.join(home, '.local', 'bin'), process.env.PATH || ''].join(path.delimiter);
 
-const pathEnv = [...extraBins, process.env.PATH || ''].filter(Boolean).join(path.delimiter);
+const pyArgs = [offline, themeAbs];
+if (flags.has('--force')) pyArgs.push('--force');
+if (flags.has('--prepare-only')) pyArgs.push('--prepare-only');
+if (flags.has('--build-only')) pyArgs.push('--build-only');
+if (flags.has('--verify-only')) pyArgs.push('--verify-only');
 
-function run(cmd, args) {
-  return spawnSync(cmd, args, {
-    encoding: 'utf8',
-    shell: true,
-    cwd: root,
-    env: { ...process.env, PATH: pathEnv },
-  });
-}
+console.log(`[graphify-theme] theme=${themeRel}`);
+console.log(`[graphify-theme] python=${py}`);
+console.log(`[graphify-theme] flags=${[...flags].join(' ') || '(full: prepare→build→verify)'}`);
 
-let result = run('graphify', ['update', themeRel]);
-if ((result.status ?? 1) !== 0) {
-  result = run('python3', ['-m', 'graphify', 'update', themeRel]);
-}
-if ((result.status ?? 1) !== 0) {
-  result = run('python', ['-m', 'graphify', 'update', themeRel]);
-}
-
-if ((result.status ?? 1) !== 0) {
-  console.error(result.stdout || '');
-  console.error(result.stderr || '');
-  console.error('graphify CLI not found or theme update failed.');
-  process.exit(result.status ?? 1);
-}
-
+const result = spawnSync(py, pyArgs, {
+  encoding: 'utf8',
+  shell: false,
+  cwd: root,
+  env: { ...process.env, PATH: pathEnv },
+});
 if (result.stdout) process.stdout.write(result.stdout);
 if (result.stderr) process.stderr.write(result.stderr);
 
-const graphJson = path.join(themeAbs, 'graphify-out', 'graph.json');
-if (!existsSync(graphJson)) {
-  console.error(`Update finished but ${path.relative(root, graphJson)} is still missing.`);
-  process.exit(1);
+const code = result.status ?? 1;
+if (code === 0) {
+  const graphJson = path.join(themeAbs, 'graphify-out', 'graph.json');
+  const manifest = path.join(themeAbs, 'RSL', 'index-manifest.json');
+  if (existsSync(graphJson)) console.log('[graphify-theme] PASS graph →', path.relative(root, graphJson));
+  if (existsSync(manifest)) console.log('[graphify-theme] PASS manifest →', path.relative(root, manifest));
 }
-
-console.log('PASS: graphify theme →', path.relative(root, graphJson));
-process.exit(0);
+process.exit(code);

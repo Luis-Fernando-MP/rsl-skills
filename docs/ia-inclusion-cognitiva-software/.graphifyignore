@@ -1,0 +1,3 @@
+# Un-ignore theme corpus (root .graphifyignore has docs/** for root-only memory)
+!**
+!*

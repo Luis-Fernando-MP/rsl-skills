@@ -7,6 +7,9 @@
     "graphify:refresh": "node scripts/graphify-refresh.mjs",
     "graphify:update": "node scripts/graphify-refresh.mjs",
     "graphify:theme": "node scripts/graphify-theme.mjs",
+    "graphify:theme:prepare": "node scripts/graphify-theme.mjs",
+    "graphify:theme:verify": "node scripts/graphify-theme.mjs",
+    "graphify:theme:test": "node scripts/graphify-theme-test.mjs",
     "graphify:query": "graphify query",
     "graphify:open": "xdg-open graphify-out/graph.html || open graphify-out/graph.html || true"
   },

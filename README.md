@@ -27,9 +27,10 @@ docs/[titulo-breve]/
   informe.md
   informe-pulido.md
   RSL/
-    PDF/          ← PDFs de las RSL (no junto a los .md)
-    MD/           ← opcional (conversión PDF→MD para menos tokens)
-  graphify-out/   ← memoria Graphify del tema
+    PDF/                 ← originales
+    MD/                  ← corpus indexable (RAG + headings)
+    index-manifest.json  ← traza (no re-lee lo indexado)
+  graphify-out/          ← grafo del tema (gitignored)
 ```
 
 Root (proyecto):
@@ -83,27 +84,42 @@ Usa graphify-root
 npm run graphify:refresh
 ```
 
-### Memoria Graphify — tema
+### Memoria Graphify — tema (pipeline A→D)
 
 ```text
 Usa graphify-theme sobre docs/ia-inclusion-cognitiva-software/
 ```
 
+| Stage | Acción |
+|-------|--------|
+| **A prepare** | Diff `index-manifest.json` → `pdftotext` + MD estructurado (`##`/`###`). Skip si ya indexado. |
+| **B agent-RAG** | Solo si `needs_agent` (PDF ilegible / pocos headings). |
+| **C build** | Grafo AST en `graphify-out/`. |
+| **D verify** | Gates: ≥8 nodos/paper, queries smoke, informe/topic. |
+
 ```bash
+# pipeline completo + verify
 npm run graphify:theme -- ia-inclusion-cognitiva-software
+
+# solo prepare / solo verify
+npm run graphify:theme -- ia-inclusion-cognitiva-software --prepare-only
+npm run graphify:theme -- ia-inclusion-cognitiva-software --verify-only
+
+# test automatizado (exige PASS)
+npm run graphify:theme:test -- ia-inclusion-cognitiva-software
 ```
 
-Consulta tema (después de indexar):
+Consulta (después de PASS):
 
 ```bash
-graphify query "métricas de evaluación" --graph docs/ia-inclusion-cognitiva-software/graphify-out/graph.json
+graphify query "digital accessibility" --graph docs/ia-inclusion-cognitiva-software/graphify-out/graph.json
 ```
 
 ---
 
 ## Orden sugerido
 
-`rsl-topic-panel` → `rsl-make-report` → PDFs en `RSL/PDF/` → **`graphify-theme`** → `rsl-polish-report`  
+`rsl-topic-panel` → `rsl-make-report` → PDFs en `RSL/PDF/` → **`graphify-theme`** (PASS verify) → `rsl-polish-report`  
 (y de vez en cuando **`graphify-root`** si cambias skills / `global/`)
 
 ## Requisitos Graphify

@@ -2,5 +2,8 @@
 graphify-out/
 **/graphify-out/
 
+# Regenerable pdftotext dumps
+**/RSL/MD/_raw/
+
 # Node
 node_modules/
