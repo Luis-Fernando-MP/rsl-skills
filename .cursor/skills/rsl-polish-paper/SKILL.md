@@ -37,8 +37,8 @@ El polish debe **leerse como prosa académica humana**, no como lista de bullets
 |-------|---------|
 | **Lo central primero** | Por bloque: 1 idea núcleo + evidencia mínima. Cortar listas de matices, acrónimos encadenados y “además / por otro lado / en este sentido” de relleno. |
 | **Párrafos cortos** | Ideal **2–4 oraciones** por párrafo. Máx. ~5. Nunca paredes de 8+ líneas. |
-| **Contexto** | ~3–5 párrafos. Definir → anclas (1 frase c/u) → tensiones. No volcar todo el estado del arte. |
-| **Continuidad** | Cada párrafo abre desde el anterior (conector o eco semántico) y deja gancho al siguiente. El cierre de Contexto prepara El problema; el cierre del Problema prepara Justificación; etc. |
+| **Contexto** | ~4 párrafos **enlazados**: WCAG/COGA → acotar objeto → tejer las 3 anclas en un hilo (no fichas sueltas) → tensiones que preparan El problema. |
+| **Continuidad** | Cada párrafo abre con **conector real** (*En ese marco*, *A partir de*, *En consecuencia*, *Ese recorte exige*, *Así*, *De ahí que*, *Es precisamente desde…*, *A ello se suma*, *Por eso*, *El vacío, entonces*, *Por esa razón*, *Además*, *De ahí*, *En respuesta*, *Como complemento*, *Con ese marco*). Sin saltos definición→cita. |
 | **Sin eco cíclico** | Chemnad/Perry/Aljedaani: una mención fuerte en Contexto; en Problema/Objetivo solo si aportan avance. |
 | **Prohibido “sabor IA”** | Enumeraciones disfrazadas (A; B; C; D), tríos forzados en cada párrafo, guiones largos en serie, verbos genéricos (“se busca abordar”), meta-comentarios. |
 
