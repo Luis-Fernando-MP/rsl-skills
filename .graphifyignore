@@ -1,0 +1,11 @@
+# Root Graphify = project memory only (skills, global/, README, candidatos…).
+# Theme corpora live in docs/[tema]/ and are indexed via: npm run graphify:theme -- <slug>
+docs/**
+
+# Nested / self graphs
+**/graphify-out/**
+
+# Noise
+**/.git/**
+**/node_modules/**
+**/rsls/**

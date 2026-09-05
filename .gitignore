@@ -1,0 +1,6 @@
+# Graphify memory / generated graphs (root + per-theme)
+graphify-out/
+**/graphify-out/
+
+# Node
+node_modules/

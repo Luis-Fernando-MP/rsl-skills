@@ -1,0 +1,16 @@
+{
+  "name": "fis-rsl",
+  "private": true,
+  "type": "module",
+  "description": "UTP RSL workflow (skills + Graphify memory)",
+  "scripts": {
+    "graphify:refresh": "node scripts/graphify-refresh.mjs",
+    "graphify:update": "node scripts/graphify-refresh.mjs",
+    "graphify:theme": "node scripts/graphify-theme.mjs",
+    "graphify:query": "graphify query",
+    "graphify:open": "xdg-open graphify-out/graph.html || open graphify-out/graph.html || true"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

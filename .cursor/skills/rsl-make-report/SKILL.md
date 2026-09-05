@@ -68,11 +68,17 @@ Spanish **académico-profesional** with connectors; cohesive paragraphs; no coll
 5. Sections 4–7 (section 4 ≤ 300 words; **citar las RSL de la sección 3**).
 6. Write `informe.md` with the **exact 7-point structure** below.
 7. Chat: path, SLRs found, queries pending, PDFs present/missing under `RSL/PDF/`.
-8. Chat — **siguiente paso** (no ejecutar polish aquí). Cerrar siempre con el comando:
+8. Chat — **siguientes pasos** (no ejecutarlos aquí). Cerrar con:
+
+```text
+Usa graphify-theme sobre docs/[titulo-breve]/
+```
 
 ```text
 Usa rsl-polish-report sobre docs/[titulo-breve]/informe.md
 ```
+
+Do **not** run Graphify refresh from this skill (user owns **graphify-theme** / **graphify-root**).
 
 ## File template (`informe.md`)
 

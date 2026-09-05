@@ -43,7 +43,7 @@ Spanish académico-profesional with connectors; cohesive paragraphs.
 
 ## Procedure (required)
 
-1. Read `informe.md` (+ `topic.md`; PDFs only under `RSL/PDF/` if useful — prefer not to load full PDFs into context).
+1. Read `informe.md` (+ `topic.md`). Prefer theme Graphify lookup if `graphify-out/graph.json` exists (`graphify query ... --graph docs/[tema]/graphify-out/graph.json`). Do **not** refresh Graphify here. Avoid loading full PDFs; they live under `RSL/PDF/`.
 2. Launch in parallel: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`.
 3. Shared prompt: informe package + “Evalúa/mejora este INFORME. Responde en español con el formato de tu rol.”
 4. Brief debate synthesis in chat.

@@ -1,0 +1,39 @@
+---
+description: Graphify dual memory (root + per-theme). Lookup OK; refresh only via skills/user.
+alwaysApply: true
+---
+
+# Graphify (FIS)
+
+Two graph scopes:
+
+| Scope | Graph path | Refresh |
+|-------|------------|---------|
+| Root (repo) | `graphify-out/graph.json` | `npm run graphify:refresh` / skill **graphify-root** |
+| Theme | `docs/[titulo-breve]/graphify-out/graph.json` | `npm run graphify:theme -- <slug>` / skill **graphify-theme** |
+
+## Lookup (default — agents MAY query)
+
+Root:
+
+```bash
+graphify query "<question>"
+graphify path "A" "B"
+graphify explain "<concept>"
+```
+
+Theme (require `--graph`):
+
+```bash
+graphify query "<question>" --graph docs/[titulo-breve]/graphify-out/graph.json
+```
+
+Prefer theme graph when the question is about that tema’s `informe`, SLRs, PDFs, or `topic.md`. Prefer root for skills, `global/`, README, cross-theme layout.
+
+If `graphify-out/wiki/index.md` (or theme wiki) exists, navigate it before dumping large files.
+
+## Refresh — human / skill owned
+
+**Never** run `npm run graphify:refresh`, `npm run graphify:theme`, or `graphify update` from `rsl-*` agents or casual coding unless the user **explicitly** invokes **graphify-root** / **graphify-theme** (or asks to refresh).
+
+PDFs live under `docs/[tema]/RSL/PDF/` so they do not sit next to markdown. Theme Graphify indexes that corpus; optional `RSL/MD/` conversions are also welcome for lighter tokens.
