@@ -2,7 +2,7 @@
 name: rsl-polish-report
 description: >-
   Polishes docs/[short-title]/informe.md with 4 agents and writes
-  docs/[short-title]/informe-pulido.md. Use when the user says
+  docs/[short-title]/informe-polish.md. Use when the user says
   rsl-polish-report. Does not create the report from scratch.
 ---
 
@@ -10,7 +10,7 @@ description: >-
 
 ## Goal
 
-Polish an existing `informe.md` via a 4-agent debate and save the result as **`informe-pulido.md`** in the same theme folder. Do not create the informe from scratch.
+Polish an existing `informe.md` via a 4-agent debate and save the result as **`informe-polish.md`** in the same theme folder. Do not create the informe from scratch.
 
 ## Paths (required)
 
@@ -18,7 +18,7 @@ Polish an existing `informe.md` via a 4-agent debate and save the result as **`i
 docs/[titulo-breve]/
   topic.md              (optional, from rsl-topic-panel)
   informe.md            (input, from rsl-make-report)
-  informe-pulido.md     (output, this skill)
+  informe-polish.md     (output, this skill)
   RSL/
     PDF/                (SLR PDFs — do not move; read if useful)
 ```
@@ -47,7 +47,7 @@ Spanish académico-profesional with connectors; cohesive paragraphs.
 2. Launch in parallel: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`.
 3. Shared prompt: informe package + “Evalúa/mejora este INFORME. Responde en español con el formato de tu rol.”
 4. Brief debate synthesis in chat.
-5. Write **`informe-pulido.md`** (do not overwrite `informe.md` unless the user explicitly asks). Keep the same 7-point headings.
+5. Write **`informe-polish.md`** (do not overwrite `informe.md` unless the user explicitly asks). Keep the same 7-point headings.
 6. List main changes and still-missing PDFs under `RSL/PDF/`.
 
 ## Forbidden
