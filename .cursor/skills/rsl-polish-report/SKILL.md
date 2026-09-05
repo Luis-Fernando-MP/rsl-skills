@@ -49,6 +49,11 @@ Spanish académico-profesional with connectors; cohesive paragraphs.
 4. Brief debate synthesis in chat.
 5. Write **`informe-polish.md`** (do not overwrite `informe.md` unless the user explicitly asks). Keep the same 7-point headings.
 6. List main changes and still-missing PDFs under `RSL/PDF/`.
+7. Chat — siguiente paso (no ejecutar aquí):
+
+```text
+Usa rsl-make-paper sobre docs/[titulo-breve]/
+```
 
 ## Forbidden
 
