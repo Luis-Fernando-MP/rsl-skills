@@ -90,8 +90,8 @@ Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
 ```
 
 Salidas:
-- `paper-polish.md` — solo **Tema / Problemática / Objetivo**, luego **Introducción** en párrafos (sin 1.1/2.3), al final **Referencias** APA 7 de las **3 RSL ancla**.
-- `paper-debate.md` — flujo Mermaid + preguntas/respuestas del debate (el paper queda limpio).
+- `paper-polish.md` — **Tema / Problemática (pregunta ¿…?) / Objetivo**; luego H2 en orden: **Contexto → El problema → Justificación → Objetivo de la RSL → Organización** (1–varios párrafos por bloque, sin 1.1/2.3); al final **Referencias** APA 7 de las **3 RSL ancla**.
+- `paper-debate.md` — Mermaid + turnos del debate.
 
 ### Memoria Graphify — root
 

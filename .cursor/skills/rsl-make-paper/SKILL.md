@@ -49,35 +49,42 @@ Never invent DOI/findings. Cite only what topic/ficha/Graphify/MD support.
 Usa rsl-make-paper sobre docs/ia-inclusion-cognitiva-software/
 ```
 
-```text
-Usa rsl-make-paper
-(adjunto topic + ficha/informe + PDFs/MD de las RSL)
-```
-
 ## Writing style (required)
 
-Spanish **académico-profesional**; connectors; cohesive paragraphs; **APA 7** in-text where DOI exists (`Autor, año`). No colloquial tone. Tables only if they clarify frontiers (optional, short).
+Spanish **académico-profesional**; connectors; cohesive paragraphs; **APA 7** in-text (`Autor, año`). No colloquial tone.
 
-**Citas — hard rules:** never put `` `topic.md` ``, `informe.md`, “panel”, “GO_con_cambios”, skill names, or repo paths in the visible paper text. Those files are **internal inputs** only. Align content with the final theme from `topic.md`, but phrase it as academic argument + published citations.
+**Citas — hard rules:** never put `` `topic.md` ``, `informe.md`, “panel”, “GO_con_cambios”, skill names, or repo paths in the visible paper text. Those files are **internal inputs** only.
 
-`paper.md` **may be long and numbered** (1.1, 2.3…): it is the working draft. The clean deliverable (tema / problemática / objetivo + Introducción fluida + Referencias APA de las 3 RSL) is produced later by **`rsl-polish-paper`** → `paper-polish.md`.
+### Maximal useful expansion (required)
+
+`paper.md` is the **rich draft** so `rsl-polish-paper` can compact with substance. **Explayarse al máximo útil:**
+
+- Prefer **more** evidence paragraphs over a thin summary: for each anchor SLR, state *qué cubre*, *n/DOI*, *qué no cubre* (= hueco propio).
+- Pull findings from Graphify / `RSL/MD` locators (`[PDF p.N]`); quote or paraphrase only what the source supports.
+- Include frontiers (Xu, Paiva, Bi, normas, W3C) in-text when they delimit the topic.
+- Fill every subsection of the template; do not leave stubs.
+- Optional draft `## Referencias` (3 RSL ancla, APA 7) at the end.
+
+**Do not:** invent findings, dump full PDFs, or pad with empty repetition. Every extra paragraph must add citation, delimitation, metric, ethic, or SE-process detail.
+
+`paper.md` **may be long and numbered** (1.1, 2.3…). Camera-ready compact form = **`paper-polish.md`**.
+
+### Problemática = pregunta (required)
+
+Align the research problem with the ficha: the **problemática is an interrogative** (*¿Cómo…? / ¿En qué medida…?*). In §2 you may explain *why it arises* (trends, gaps, regulation), but the formulated problem itself remains a **question**. State that question explicitly in §2.4 (or §2 opening) so polish can lift it to the header.
 
 ## Procedure (required)
 
 1. Resolve `docs/[titulo-breve]/`. Prefer folder of existing `topic.md` / `informe.md`.
-2. Read **ficha** (`informe-polish.md` | `informe.md` | `ficha.md`) + `topic.md` (tema final, GO_*, exclusiones).
+2. Read **ficha** (`informe-polish.md` | `informe.md` | `ficha.md`) + `topic.md` (tema final, GO_*, exclusiones) — internal only.
 3. **Graphify first** (if `graphify-out/graph.json` exists):
    ```bash
    graphify query "<pregunta>" --graph docs/[titulo-breve]/graphify-out/graph.json
    ```
-   Prefer `RSL/MD/` chunks via locators `[PDF p.N]`; do **not** dump full PDFs into context. Do **not** run `graphify:theme` / refresh unless the user asks.
-4. If Graphify missing or stale and user attached new RSL files → say they should run `Usa graphify-theme sobre docs/[tema]/` before or after; still write `paper.md` from available ficha/topic/MD.
-5. Write **`paper.md`** with the **exact section structure** below (Introducción completa).
-6. Chat: path, sources used (topic/ficha/graphify/MD), citations, next step:
-
-```text
-Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
-```
+   Prefer `RSL/MD/` chunks via locators; do **not** dump full PDFs. Do **not** refresh Graphify unless the user asks.
+4. If Graphify missing/stale and user attached new RSL files → suggest `Usa graphify-theme sobre docs/[tema]/`; still write `paper.md` from available sources.
+5. Write **`paper.md`** with the **exact section structure** below — **maximal useful expansion**.
+6. Chat: path, sources, next step `Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md`
 
 ## File template (`paper.md`)
 
@@ -89,13 +96,13 @@ Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
 …
 
 ### 1.2 Lo que se sabe del tema hasta la fecha
-(Basado en evidencias / citas de las RSL ancla y frontera)
+(Basado en evidencias / citas de las RSL ancla y frontera — rico)
 
 ### 1.3 Situación actual y disputas
-(Qué se discute / tensiones en la literatura)
+…
 
 ## 2. El problema
-(Puede articularse desde tendencias, discrepancias y/o vacíos — siempre con evidencia)
+(Abrir o cerrar con la **problemática en forma de pregunta**)
 
 ### 2.1 Tendencias o nuevas perspectivas
 …
@@ -107,28 +114,27 @@ Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
 …
 
 ### 2.4 Contraste: situación actual vs situación deseada
-(Qué se propone estudiar; énfasis en el contraste)
+(Qué se propone estudiar; enfatizar contraste; **reformular la pregunta**)
 
 ## 3. Justificación
 ### 3.1 Justificación de la elección del tema
 …
 
 ### 3.2 Utilidad de los resultados de la revisión
-(Cómo podrían utilizarse; para qué se escribe)
+…
 
 ### 3.3 Necesidad de una RSL
-(Por qué revisión sistemática y no otro diseño)
+…
 
 ## 4. Objetivo de la RSL
-(Unión explícita entre el problema y lo ya hecho para abordarlo — citando fronteras Chemnad/Perry/Aljedaani/… según ficha)
+(Respuesta operativa a la pregunta; unión problema ↔ fronteras)
 
 ## 5. Organización del contenido de la revisión
-(Cómo se organiza el resto del documento / protocolo: secciones previstas de la RSL)
+…
+
+## Referencias
+(Opcional borrador: 3 RSL ancla APA 7)
 ```
-
-Fill every section with real content from the package. Section 1–2 must cite the SLR frontiers from the ficha (APA 7). Align title/problem/object with the final theme from `topic.md` (internal), without naming that file.
-
-Optional at end of `paper.md` (working notes only, clearly marked): a draft `## Referencias` with the 3 anchor SLRs in APA 7 — `rsl-polish-paper` will publish the clean list.
 
 ## Forbidden
 
@@ -136,8 +142,8 @@ Optional at end of `paper.md` (working notes only, clearly marked): a draft `## 
 - Overwriting `informe.md` / `informe-polish.md` / `topic.md`.
 - Inventing citations or DOI.
 - Citing `topic.md`, panel verdicts, or repo paths in the paper body.
-- Dumping full PDFs into chat when Graphify / `RSL/MD` exists.
+- Dumping full PDFs when Graphify / `RSL/MD` exists.
 - Refreshing Graphify unless the user explicitly asks.
 - Saving outside `docs/[titulo-breve]/`.
-- Naming the output `informe.md` (output is **`paper.md`** only).
-- Expecting `paper.md` to be the final camera-ready intro (that is **`paper-polish.md`**).
+- Thin stub sections “to polish later”.
+- Expecting `paper.md` to be camera-ready (`paper-polish.md`).
