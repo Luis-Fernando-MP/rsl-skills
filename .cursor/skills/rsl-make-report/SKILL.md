@@ -1,39 +1,34 @@
 ---
 name: rsl-make-report
 description: >-
-  Builds a UTP RSL report under docs/[datetime - short-title]/informe.md from
-  a free topic: keywords ES/EN, up to 3 SLRs or Scopus queries, sections 4–7,
-  UTP lines and competencies. Use when the user says rsl-make-report or asks to
-  create the RSL informe. Does not run the 4-agent polish debate.
+  Builds a UTP RSL report at docs/[short-title]/informe.md from a free topic
+  (reuse the same folder as topic.md if the theme matches). Keywords, up to 3
+  SLRs or Scopus queries, sections 4–7, UTP lines and competencies. Use when
+  the user says rsl-make-report. Does not run the 4-agent polish debate.
 ---
 
 # rsl-make-report
 
 ## Goal
 
-Receive a research topic and write **one** polished UTP informe in a dedicated folder. Single proposer flow. Do **not** call the 4 debate agents (`rsl-polish-report`). Do **not** mix with `rsl-topic-panel`.
+Receive a research topic and write a polished UTP `informe.md` in the theme folder. Single proposer flow. Do **not** call `rsl-polish-report` agents here. Do **not** mix with `rsl-topic-panel` logic beyond reusing the folder.
 
 ## Output path (required)
 
-Everything for this investigation goes inside:
-
 ```text
-docs/[YYYY-MM-DD HHMM - titulo-breve]/informe.md
+docs/[titulo-breve]/informe.md
 ```
 
-Examples:
+Same theme as an existing panel → **reuse** that folder (where `topic.md` already lives):
 
 ```text
-docs/2026-09-04 2115 - ia-pipelines-amenazas/informe.md
-docs/2026-09-04 2115 - ia-pipelines-amenazas/autor-2024-slr.pdf
+docs/ia-pipelines-amenazas/
+  topic.md          (from rsl-topic-panel)
+  informe.md        (this skill)
+  *.pdf             (SLRs)
 ```
 
-Rules for the folder name:
-
-- `YYYY-MM-DD HHMM` = local datetime when creating the report (24h).
-- `titulo-breve` = 3–6 words, lowercase, hyphenated, no accents if awkward, no `/`.
-- Create the folder if missing.
-- Put downloaded/attached SLR PDFs **in the same folder** (not only root `rsls/`).
+Slug: 3–6 words, lowercase, hyphenated. If the user points to an existing `docs/.../topic.md`, use that folder. Put SLR PDFs in the **same** folder.
 
 ## Invoke
 
@@ -46,33 +41,29 @@ Objeto de estudio: ...
 Carrera: Ingeniería de Software
 ```
 
-No topic → ask for title, problem, object. Do not invent a topic.
+Or: `Usa rsl-make-report sobre docs/ia-pipelines-amenazas/` (reuse folder + read `topic.md` if present).
+
+No topic and no folder → ask. Do not invent a topic.
 
 ## Writing style (required)
 
-Spanish **académico-profesional**: conectores (además, en consecuencia, no obstante, en ese sentido, asimismo, por tanto), párrafos cohesionados, sin tono coloquial ni relleno. Secciones 4–6 en prosa fluida; tablas solo donde la plantilla lo pide.
+Spanish **académico-profesional** with connectors; cohesive paragraphs; no colloquial tone. Tables only where the template requires them.
 
 ## Project sources
 
-- UTP lines: `global/lineas-utp.md`
-- Competencies: `global/competencias.md`
+- `global/lineas-utp.md`
+- `global/competencias.md`
+- Optional prior verdict: `docs/[titulo-breve]/topic.md`
 
 ## Procedure (required)
 
-1. Normalize title, problemática, objeto (light sharpening OK; keep user domain).
-2. Create `docs/[YYYY-MM-DD HHMM - slug]/` and write `informe.md` there.
-3. **Keywords**: table `| Español | Inglés |` (Scopus/IEEE/WoS-grade). **Always** include a Scopus keyword query.
-4. **Up to 3 SLRs** (systematic / scoping / mapping review only).
-   - Prefer OA, ≤ 5 years.
-   - Table: `| Referencia (APA) | DOI / URL | Razón |`
-   - If you find 1–2 → add them. User may download PDFs into **this same folder**.
-   - If fewer than 3 → do not block: add **Scopus queries** in the informe; placeholders `Pendiente — query N` OK.
-   - Never invent DOI/PDF. Always keep keywords + query.
-5. **Section 4** (≤ 300 words): estado del conocimiento + necesidad de nueva RSL (cite found SLRs; if missing, note enrichment when PDFs arrive).
-6. **Section 5**: 1–2 lines from `global/lineas-utp.md` for Software Engineering + polished justification paragraph.
-7. **Section 6**: 2–4 competencies from `global/competencias.md` + polished justification.
-8. **Section 7**: sharper tentative title.
-9. In chat: full path to `informe.md`, SLRs found, queries for missing ones, PDFs present vs pending in that folder.
+1. Resolve folder `docs/[titulo-breve]/` (same theme as `topic.md` if it exists).
+2. Normalize title / problemática / objeto (may use afilado from `topic.md` if user agrees or verdict was GO_con_cambios).
+3. **Keywords** ES|EN + Scopus query (**always**).
+4. **Up to 3 SLRs**; if fewer, add Scopus queries / placeholders. Never invent DOI/PDF.
+5. Sections 4–7 (section 4 ≤ 300 words).
+6. Write `informe.md` in that folder.
+7. Chat: path, SLRs found, queries pending, PDFs present/missing.
 
 ## File template (`informe.md`)
 
@@ -125,9 +116,7 @@ Spanish **académico-profesional**: conectores (además, en consecuencia, no obs
 
 ## Forbidden
 
-- Writing `ficha_NNN.md` at repo root.
-- Launching the 4 polish agents.
-- Creating an informe without a user topic.
-- Inventing DOI/SLR/PDF.
-- Omitting keywords/query because SLRs are missing.
-- Colloquial or telegraphic prose in narrative sections.
+- Datetime folders; root `ficha_NNN.md`.
+- Launching polish agents.
+- Omitting keywords/query when SLRs are missing.
+- Colloquial prose in narrative sections.

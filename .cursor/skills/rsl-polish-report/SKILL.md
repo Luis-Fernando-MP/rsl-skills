@@ -1,64 +1,55 @@
 ---
 name: rsl-polish-report
 description: >-
-  Polishes an existing RSL informe under docs/[datetime - title]/informe.md by
-  running 4 agents in parallel (critic, defender, social impact, business). Use
-  when the user says rsl-polish-report or asks to polish/refine the informe.
-  Does not create the report from scratch.
+  Polishes docs/[short-title]/informe.md with 4 agents and writes
+  docs/[short-title]/informe-pulido.md. Use when the user says
+  rsl-polish-report. Does not create the report from scratch.
 ---
 
 # rsl-polish-report
 
 ## Goal
 
-Polish an informe already created by `rsl-make-report` via a 4-agent debate. Do not invent the topic or create the informe from scratch. Do not mix with `rsl-topic-panel`.
+Polish an existing `informe.md` via a 4-agent debate and save the result as **`informe-pulido.md`** in the same theme folder. Do not create the informe from scratch.
+
+## Paths (required)
+
+```text
+docs/[titulo-breve]/
+  topic.md              (optional, from rsl-topic-panel)
+  informe.md            (input, from rsl-make-report)
+  informe-pulido.md     (output, this skill)
+  *.pdf
+```
 
 ## Invoke
 
 ```text
-Usa rsl-polish-report sobre docs/2026-09-04 2115 - ia-pipelines-amenazas/informe.md
+Usa rsl-polish-report sobre docs/ia-pipelines-amenazas/informe.md
 ```
 
-Or point to the folder: `docs/.../`. If omitted → ask for path under `docs/`.
+Or the folder `docs/ia-pipelines-amenazas/`. If omitted → ask for path under `docs/`.
 
-## Paths
+## Critic role
 
-Work only inside:
-
-```text
-docs/[YYYY-MM-DD HHMM - titulo-breve]/
-  informe.md
-  *.pdf   (SLRs del caso)
-```
-
-Backup before rewrite: `informe.bak.md` in the **same** folder.
-
-## Critic role here
-
-Watch for: real contribution, nothing false, no nonsense, correct citations, coherence.  
-Does **not** mean discard the report — improve it.
+Real contribution, no false claims, no nonsense, correct citations, coherence. Does **not** mean discard the report.
 
 ## Writing style (required)
 
-Spanish académico-profesional with connectors; cohesive paragraphs; keep tables where the template requires them.
+Spanish académico-profesional with connectors; cohesive paragraphs.
 
 ## Procedure (required)
 
-1. Read `informe.md` (and PDFs in the same folder if present).
-2. Pack context: full informe + SLR/DOI list + PDF notes.
-3. Launch in parallel:
-   - `subagent_type: critico-rsl`
-   - `subagent_type: defensor-rsl`
-   - `subagent_type: impacto-social-rsl`
-   - `subagent_type: viabilidad-negocio-rsl`
-4. Shared prompt: informe package + “Evalúa/mejora este INFORME. Responde en español con el formato de tu rol. Crítico: citas, coherencia, aporte falso/vacío.”
-5. Brief debate synthesis in chat.
-6. Write `informe.bak.md`, then rewrite `informe.md` (same sections; ≤300 words in section 4; polished prose).
-7. List main changes and still-missing PDFs in that folder.
+1. Read `informe.md` (+ PDFs / `topic.md` in the same folder if useful).
+2. Launch in parallel: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`.
+3. Shared prompt: informe package + “Evalúa/mejora este INFORME. Responde en español con el formato de tu rol.”
+4. Brief debate synthesis in chat.
+5. Write **`informe-pulido.md`** (do not overwrite `informe.md` unless the user explicitly asks).
+6. List main changes and still-missing PDFs.
 
 ## Forbidden
 
-- Creating an informe from scratch (`rsl-make-report`).
-- Topic-only stress test (`rsl-topic-panel`).
+- Creating informe from scratch (`rsl-make-report`).
+- Topic-only panel without informe (`rsl-topic-panel`).
 - Dropping UTP section structure.
-- Saving outside `docs/[fecha hora - titulo]/`.
+- Saving outside `docs/[titulo-breve]/`.

@@ -2,25 +2,21 @@
 
 Nomenclatura: `rsl-*` (inglés).
 
-| Skill | Qué hace |
-|-------|----------|
-| `rsl-topic-panel` | Estresa un tema con 4 agentes. No escribe informe. |
-| `rsl-make-report` | Recibe un tema y crea `docs/[fecha hora - título]/informe.md`. |
-| `rsl-polish-report` | Pule un `informe.md` existente con 4 agentes. |
+| Skill | Qué hace | Salida |
+|-------|----------|--------|
+| `rsl-topic-panel` | Estresa un tema (4 agentes) | `docs/[titulo-breve]/topic.md` |
+| `rsl-make-report` | Genera el informe UTP | `docs/[titulo-breve]/informe.md` |
+| `rsl-polish-report` | Pule el informe (4 agentes) | `docs/[titulo-breve]/informe-pulido.md` |
+
+Mismo tema → **misma carpeta** (`topic.md`, `informe.md`, `informe-pulido.md`, PDFs).
 
 Agentes: `.cursor/agents/`
-
-Salida de informes:
-
-```text
-docs/[YYYY-MM-DD HHMM - titulo-breve]/informe.md
-```
 
 ---
 
 ## Cómo ejecutar
 
-### Estresar tema (opcional)
+### Estresar tema
 
 ```text
 Usa rsl-topic-panel con este tema:
@@ -41,16 +37,16 @@ Objeto de estudio: ...
 Carrera: Ingeniería de Software
 ```
 
-Si faltan RSL: keywords + queries Scopus en el informe; adjunta PDF en la misma carpeta `docs/.../`.
+(o sobre `docs/[titulo-breve]/` si ya existe `topic.md`)
 
 ### Pulir informe
 
 ```text
-Usa rsl-polish-report sobre docs/YYYY-MM-DD HHMM - titulo-breve/informe.md
+Usa rsl-polish-report sobre docs/[titulo-breve]/informe.md
 ```
 
 ---
 
 ## Orden
 
-`rsl-topic-panel` (opcional) → `rsl-make-report` → adjuntar PDFs → `rsl-polish-report`
+`rsl-topic-panel` → `rsl-make-report` → adjuntar PDFs → `rsl-polish-report`
