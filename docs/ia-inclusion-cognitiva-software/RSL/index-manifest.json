@@ -1,17 +1,17 @@
 {
   "version": 1,
-  "updated_at": "2026-09-05T03:08:42+00:00",
+  "updated_at": "2026-09-05T03:14:37+00:00",
   "entries": {
     "informe.md": {
       "source": "informe.md",
-      "source_sha256": "7aa9e2ab6eb2e56cb36e1295a292bdf2544d452f4e2ceb7a6e4b5a96e7327e97",
-      "source_bytes": 10111,
+      "source_sha256": "f961ebcadbe15f21821456045a9da6575eeb742485f8f1c89f24d18ae672eb0d",
+      "source_bytes": 10529,
       "md": "informe.md",
-      "md_sha256": "7aa9e2ab6eb2e56cb36e1295a292bdf2544d452f4e2ceb7a6e4b5a96e7327e97",
+      "md_sha256": "f961ebcadbe15f21821456045a9da6575eeb742485f8f1c89f24d18ae672eb0d",
       "method": "theme-md",
       "status": "graphify_indexed",
-      "md_created_at": "2026-09-05T03:08:41+00:00",
-      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "md_created_at": "2026-09-05T03:14:36+00:00",
+      "graphify_indexed_at": "2026-09-05T03:14:37+00:00",
       "notes": "theme markdown",
       "heading_count": 11
     },
@@ -24,7 +24,7 @@
       "method": "theme-md",
       "status": "graphify_indexed",
       "md_created_at": "2026-09-05T03:08:41+00:00",
-      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "graphify_indexed_at": "2026-09-05T03:14:37+00:00",
       "notes": "theme markdown",
       "heading_count": 29
     },
@@ -37,7 +37,7 @@
       "method": "pdftotext+structure",
       "status": "graphify_indexed",
       "md_created_at": "2026-09-05T03:08:41+00:00",
-      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "graphify_indexed_at": "2026-09-05T03:14:37+00:00",
       "notes": "words:13220,alpha:0.93;headings:52",
       "heading_count": 52
     },
@@ -50,9 +50,22 @@
       "method": "pdftotext+structure",
       "status": "graphify_indexed",
       "md_created_at": "2026-09-05T03:08:41+00:00",
-      "graphify_indexed_at": "2026-09-05T03:08:42+00:00",
+      "graphify_indexed_at": "2026-09-05T03:14:37+00:00",
       "notes": "words:11983,alpha:0.93;headings:37",
       "heading_count": 37
+    },
+    "RSL/PDF/aljedaani-mollik-2026-llm-web-accessibility.pdf": {
+      "source": "RSL/PDF/aljedaani-mollik-2026-llm-web-accessibility.pdf",
+      "source_sha256": "06d06211153276c34fb7d457767c8e09379cc6ddda4db46ddc40159d26a171f2",
+      "source_bytes": 742469,
+      "md": "RSL/MD/aljedaani-mollik-2026-llm-web-accessibility.md",
+      "md_sha256": "00dba77afe5b974941d3ad1f41c62c359c39381eeab34ead2b7b4976116e4b4e",
+      "method": "pdftotext+structure",
+      "status": "graphify_indexed",
+      "md_created_at": "2026-09-05T03:14:36+00:00",
+      "graphify_indexed_at": "2026-09-05T03:14:37+00:00",
+      "notes": "words:11709,alpha:0.91;headings:36",
+      "heading_count": 36
     }
   }
 }
